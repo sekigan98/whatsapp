@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Info</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #e5ddd5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .whatsapp-window {
+      width: 360px;
+      height: 640px;
+      background-color: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #075e54;
+      color: white;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-name {
+      font-weight: bold;
+    }
+
+    .status {
+      font-size: 0.85rem;
+      color: #d0f8ce;
+    }
+
+    .messages {
+      flex: 1;
+      background-color: #e5ddd5;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .message {
+      background-color: #dcf8c6;
+      padding: 10px 15px;
+      border-radius: 7.5px;
+      max-width: 80%;
+      margin-bottom: 15px;
+      align-self: flex-start;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .fake-input {
+      background-color: #f0f0f0;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #ccc;
+    }
+
+    .fake-bar {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 8px 12px;
+      flex: 1;
+      margin-right: 10px;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .cta-button {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      padding: 12px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 12px #25D366;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #1da851;
+      transform: scale(1.05);
+      box-shadow: 0 0 16px #1da851;
+    }
+
+    .cta-button:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+  <div class="whatsapp-window">
+    <div class="header">
+      <img class="profile-pic" src="https://i.pinimg.com/736x/4d/78/d6/4d78d654861b422f29167f9a51d1b6fb.jpg" alt="perfil">
+      <div class="contact-info">
+        <span class="contact-name">Bet300</span>
+        <span class="status">en línea</span>
+      </div>
+    </div>
+    <div class="messages">
+      <div class="message">Hola! 👋 ¿Querés saber más sobre las promos activas? Tocá el botón "Enviar" para recibir información. Puede ser que hoy sea tu dia de suerte ☘️</div>
+    </div>
+    <div class="fake-input">
+      <div class="fake-bar">Hola, vi la promo activa y quiero más info.</div>
+      <button class="cta-button" onclick="redirigirWhatsApp()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    function redirigirWhatsApp() {
+      const numeros = [
+        "5491169641098",
+        "5491169640722",
+        "5491167901856",
+        "5491169649367",
+        "5491169616587",
+        "5491169606562",
+        "5491169628596"
+      ];
+
+      const elegido = numeros[Math.floor(Math.random() * numeros.length)];
+      const mensaje = encodeURIComponent("Hola, vi la promo activa y quiero más info.");
+      window.location.href = `https://wa.me/${elegido}?text=${mensaje}`;
+    }
+  </script>
+</body>
+</html>
