@@ -165,18 +165,25 @@
     </div>
   </div>
 
-  <script>
-    const texto = "✅ Trabajamos con la plataforma más completa y segura que existe https://www.bet300.biz 🃏 Mas de 2.000 juegos! 💵 Carga minima $1000 💰 Retiro minimo $7000 🤩 Entrega de premios 24hs 😄 Un retiro cada 24 hs por jugador.🙌🏻 CARGA AL INSTANTE 🙌🏻";
-    let i = 0;
-    function escribirMensaje() {
-      if (i < texto.length) {
-        document.getElementById("message").innerHTML += texto.charAt(i);
-        i++;
-        setTimeout(escribirMensaje, 40);
-      }
-    }
-    escribirMensaje();
+ <script>
+  const texto =
+    "✅ Trabajamos con la plataforma más completa y segura que existe https://www.bet300.biz\n\n🃏 Más de 2.000 juegos!\n💵 Carga mínima $1000\n💰 Retiro mínimo $7000\n🤩 Entrega de premios 24hs\n😄 Un retiro cada 24 hs por jugador.\n\n🙌🏻 CARGA AL INSTANTE 🙌🏻";
 
+  let i = 0;
+  function escribirMensaje() {
+    if (i < texto.length) {
+      const char = texto.charAt(i);
+      if (char === "\n") {
+        document.getElementById("message").innerHTML += "<br>";
+      } else {
+        document.getElementById("message").innerHTML += char;
+      }
+      i++;
+      setTimeout(escribirMensaje, 40);
+    }
+  }
+  escribirMensaje();
+   
     function redirigirWhatsApp() {
       const numeros = [
         "5491169641098",
@@ -204,4 +211,5 @@
   </script>
 </body>
 </html>
+
 
