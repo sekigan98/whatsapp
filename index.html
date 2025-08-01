@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WhatsApp Info</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Promoción Casino</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background-color: #e5ddd5;
+      background-color: #ece5dd;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
@@ -15,147 +19,164 @@
       height: 100vh;
     }
 
-    .whatsapp-window {
-      width: 360px;
+    .chat-container {
+      width: 100%;
+      max-width: 380px;
       height: 640px;
-      background-color: #fff;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      border-radius: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      background: url('https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg') center center/cover no-repeat;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      position: relative;
     }
 
     .header {
       background-color: #075e54;
       color: white;
-      padding: 10px 15px;
+      padding: 10px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .profile-pic {
-      width: 40px;
-      height: 40px;
+    .header img {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      object-fit: cover;
+      border: 2px solid #fff;
     }
 
-    .contact-info {
+    .header .info {
       display: flex;
       flex-direction: column;
-      justify-content: center;
     }
 
-    .contact-name {
+    .header .info .name {
       font-weight: bold;
+      font-size: 16px;
     }
 
-    .status {
-      font-size: 0.85rem;
-      color: #d0f8ce;
+    .header .info .status {
+      font-size: 13px;
+      color: #cfcfcf;
     }
 
-    .messages {
+    .chat-body {
       flex: 1;
-      background-color: #e5ddd5;
-      padding: 20px;
+      padding: 20px 10px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      animation: slideIn 0.5s ease-out;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      overflow-y: auto;
     }
 
     .message {
       background-color: #dcf8c6;
-      padding: 10px 15px;
-      border-radius: 7.5px;
-      max-width: 80%;
+      padding: 12px 18px;
+      border-radius: 10px;
       margin-bottom: 15px;
-      align-self: flex-start;
-      animation: fadeIn 0.6s ease-in;
+      max-width: 80%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .fake-input {
-      background-color: #f0f0f0;
-      padding: 10px 15px;
+    .input-box {
       display: flex;
+      padding: 10px;
+      background-color: #f0f0f0;
       align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid #ccc;
+      gap: 10px;
     }
 
-    .fake-bar {
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 20px;
-      padding: 8px 12px;
+    .input-box input {
       flex: 1;
-      margin-right: 10px;
-      color: #888;
-      font-size: 0.9rem;
-    }
-
-    .cta-button {
-      background-color: #25D366;
-      color: white;
-      border: none;
-      font-size: 1rem;
-      padding: 12px 18px;
+      padding: 12px 15px;
       border-radius: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
       cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 0 12px #25D366;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      font-size: 14px;
     }
 
-    .cta-button:hover {
-      background-color: #1da851;
-      transform: scale(1.05);
-      box-shadow: 0 0 16px #1da851;
+    .input-box input:hover {
+      background-color: #e8f5e9;
     }
 
-    .cta-button:active {
-      transform: scale(0.98);
+    .send-btn {
+      background-color: #25d366;
+      border: none;
+      border-radius: 50%;
+      padding: 12px;
+      cursor: pointer;
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 0 15px #25d366, 0 0 8px #25d366;
+      transition: transform 0.2s ease;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .click-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      background: transparent;
     }
   </style>
 </head>
-<body>
-  <div class="whatsapp-window">
+<body oncontextmenu="return false" onkeydown="return bloquear(event)" onmousedown="return bloquear(event)">
+  <div class="chat-container">
+    <div class="click-overlay" onclick="redirigirWhatsApp()"></div>
+
     <div class="header">
-      <img class="profile-pic" src="https://i.pinimg.com/736x/4d/78/d6/4d78d654861b422f29167f9a51d1b6fb.jpg" alt="perfil">
-      <div class="contact-info">
-        <span class="contact-name">Bet300</span>
+      <img src="https://i.pinimg.com/736x/4d/78/d6/4d78d654861b422f29167f9a51d1b6fb.jpg" alt="Foto perfil" />
+      <div class="info">
+        <span class="name">Bet 300</span>
         <span class="status">en línea</span>
       </div>
     </div>
-    <div class="messages">
-      <div class="message">Hola! 👋 ¿Querés saber más sobre las promos activas? Tocá el botón "Enviar" para recibir información. Puede ser que hoy sea tu dia de suerte ☘️</div>
+
+    <div class="chat-body">
+      <div class="message" id="message"></div>
     </div>
-    <div class="fake-input">
-      <div class="fake-bar">Hola, vi la promo activa y quiero más info.</div>
-      <button class="cta-button" onclick="redirigirWhatsApp()">Enviar</button>
+
+    <div class="input-box" onclick="redirigirWhatsApp()">
+      <input type="text" placeholder="Escribe un mensaje..." readonly />
+      <button class="send-btn" onclick="redirigirWhatsApp()">➤</button>
     </div>
   </div>
 
   <script>
+    const texto = "Hola! 👋 ¿Querés saber más sobre las promos activas? Tocá el botón verde para recibir información. Puede ser que hoy sea tu día de suerte ☘️";
+    let i = 0;
+    function escribirMensaje() {
+      if (i < texto.length) {
+        document.getElementById("message").innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(escribirMensaje, 40);
+      }
+    }
+    escribirMensaje();
+
     function redirigirWhatsApp() {
       const numeros = [
         "5491169641098",
@@ -164,12 +185,21 @@
         "5491169649367",
         "5491169616587",
         "5491169606562",
-        "5491169628596"
+        "5491169628596",
       ];
+      const numero = numeros[Math.floor(Math.random() * numeros.length)];
+      const mensaje = encodeURIComponent("Hola, vi la promoción y quiero jugar");
+      window.location.href = `https://wa.me/${numero}?text=${mensaje}`;
+    }
 
-      const elegido = numeros[Math.floor(Math.random() * numeros.length)];
-      const mensaje = encodeURIComponent("Hola, vi la promo activa y quiero más info.");
-      window.location.href = `https://wa.me/${elegido}?text=${mensaje}`;
+    function bloquear(e) {
+      const key = e.key || e.which || e.keyCode;
+      if (
+        e.ctrlKey && (key === 'u' || key === 'U' || key === 's' || key === 'S' || key === 'c' || key === 'C') ||
+        key === 123 // F12
+      ) {
+        return false;
+      }
     }
   </script>
 </body>
