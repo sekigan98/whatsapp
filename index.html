@@ -207,12 +207,14 @@
           "5491169616587",
           "5491169606562",
           "5491169628596",
-        ];
-        const numero = numeros[Math.floor(Math.random() * numeros.length)];
-        const mensaje = encodeURIComponent("Hola, vi la promoción y quiero saber más");
-        window.location.href = `https://wa.me/${numero}?text=${mensaje}`;
-      }, 400); // delay de 400ms para evitar redirección inmediata
-    }
+      ];
+      const numero = numeros[Math.floor(Math.random() * numeros.length)];
+      const mensaje = encodeURIComponent("Hola, vi la promoción y quiero saber más");
+
+      const utm = "&utm_source=facebook&utm_medium=cpc&utm_campaign=landing_chat";
+      window.location.href = `https://wa.me/${numero}?text=${mensaje}${utm}`;
+    }, 400);
+  }
 
     function bloquear(e) {
       const key = e.key || e.which || e.keyCode;
@@ -226,5 +228,6 @@
   </script>
 </body>
 </html>
+
 
 
