@@ -180,8 +180,7 @@
     </div>
   </div>
 
-  <!-- Contenido oculto simulado para evitar penalización -->
-  <div class="invisible-content">
+  <div class="invisible-content" style="display:none;">
     <h1>Bienvenido a nuestra plataforma de entretenimiento online</h1>
     <p>Ofrecemos acceso inmediato a herramientas personalizadas para usuarios registrados.</p>
     <p>Soporte disponible 24/7, sistemas seguros y funciones adaptadas a cada perfil.</p>
@@ -207,6 +206,12 @@
     escribirMensaje();
 
     function redirigirWhatsApp() {
+      gtag('event', 'click_redireccion_whatsapp', {
+        'event_category': 'Interacción',
+        'event_label': 'Landing Bet300 - Click en chat',
+      });
+      console.log('Evento click_redireccion_whatsapp enviado a GA');
+
       setTimeout(() => {
         const numeros = [
           "5491169641098",
@@ -216,14 +221,14 @@
           "5491169616587",
           "5491169606562",
           "5491169628596",
-      ];
-      const numero = numeros[Math.floor(Math.random() * numeros.length)];
-      const mensaje = encodeURIComponent("Hola, vi la promoción y quiero saber más");
+        ];
+        const numero = numeros[Math.floor(Math.random() * numeros.length)];
+        const mensaje = encodeURIComponent("Hola, vi la promoción y quiero saber más");
 
-      const utm = "&utm_source=facebook&utm_medium=cpc&utm_campaign=landing_chat";
-      window.location.href = `https://wa.me/${numero}?text=${mensaje}${utm}`;
-    }, 400);
-  }
+        const utm = "&utm_source=facebook&utm_medium=cpc&utm_campaign=landing_chat";
+        window.location.href = `https://wa.me/${numero}?text=${mensaje}${utm}`;
+      }, 400);
+    }
 
     function bloquear(e) {
       const key = e.key || e.which || e.keyCode;
