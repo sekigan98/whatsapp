@@ -10,10 +10,26 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-GQ9Q1X0DC1');
   </script>
   <title>Más información</title>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1093070186086121');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1093070186086121&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <style>
     * {
       box-sizing: border-box;
@@ -152,7 +168,6 @@
       background: transparent;
     }
 
-    /* Contenido invisible para evitar penalizaciones por contenido vacío */
     .invisible-content {
       display: none;
     }
@@ -180,7 +195,7 @@
     </div>
   </div>
 
-  <div class="invisible-content" style="display:none;">
+  <div class="invisible-content">
     <h1>Bienvenido a nuestra plataforma de entretenimiento online</h1>
     <p>Ofrecemos acceso inmediato a herramientas personalizadas para usuarios registrados.</p>
     <p>Soporte disponible 24/7, sistemas seguros y funciones adaptadas a cada perfil.</p>
@@ -188,7 +203,7 @@
 
   <script>
     const texto =
-      "🙌 Hola! 👋\n\nTenemos una experiencia personalizada esperándote. 🚀\n✅ Acceso inmediato garantizado\n📲 Compatible con cualquier dispositivo\n🕒 Tiempo estimado: menos de 1 minuto\n\n¡Tocá cualquier parte de la pantalla para comenzar!";
+      "¿Queres saber de que se trata? 👋\n\n✅ Acceso inmediato garantizado\n📲 Compatible con cualquier dispositivo\n🕒 Tiempo estimado: menos de 1 minuto\n\n¡Tocá cualquier parte de la pantalla para comenzar!";
 
     let i = 0;
     function escribirMensaje() {
@@ -210,8 +225,6 @@
         'event_category': 'Interacción',
         'event_label': 'Landing Bet300 - Click en chat',
       });
-      console.log('Evento click_redireccion_whatsapp enviado a GA');
-
       setTimeout(() => {
         const numeros = [
           "5491169640722",
@@ -222,7 +235,6 @@
         ];
         const numero = numeros[Math.floor(Math.random() * numeros.length)];
         const mensaje = encodeURIComponent("Hola, vi la promoción y quiero saber más");
-
         const utm = "&utm_source=facebook&utm_medium=cpc&utm_campaign=landing_chat";
         window.location.href = `https://wa.me/${numero}?text=${mensaje}${utm}`;
       }, 400);
@@ -234,13 +246,24 @@
         e.ctrlKey && (key === 'u' || key === 'U' || key === 's' || key === 'S' || key === 'c' || key === 'C') ||
         key === 123 // F12
       ) {
+        e.preventDefault();
         return false;
       }
     }
+
+    // Protección adicional anti-inspección y devtools abiertos
+    setInterval(() => {
+      const devtools = new Image();
+      Object.defineProperty(devtools, 'id', {
+        get: function () {
+          window.location.href = 'about:blank';
+        }
+      });
+      console.log('%c', devtools);
+    }, 1000);
   </script>
 </body>
 </html>
-
 
 
 
