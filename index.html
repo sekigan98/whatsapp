@@ -220,28 +220,30 @@
     }
     escribirMensaje();
 
-    function redirigirWhatsApp() {
-      gtag('event', 'click_redireccion_whatsapp', {
-        'event_category': 'Interacción',
-        'event_label': 'Landing Bet300 - Click en chat',
-      });
-      
-  fbq('trackCustom', 'ClickWhatsApp');
-      
-      setTimeout(() => {
-        const numeros = [
-          "5491169640722",
-          "5491167901856",
-          "5491169649367",
-          "5491169616587",
-          "5491169606562",
-        ];
-        const numero = numeros[Math.floor(Math.random() * numeros.length)];
-        const mensaje = encodeURIComponent("Hola, vi la promoción y quiero saber más");
-        const utm = "&utm_source=facebook&utm_medium=cpc&utm_campaign=landing_chat";
-        window.location.href = `https://wa.me/${numero}?text=${mensaje}${utm}`;
-      }, 400);
-    }
+  function redirigirWhatsApp() {
+    // Evento para Google Analytics
+    gtag('event', 'click_redireccion_whatsapp', {
+      'event_category': 'Interacción',
+      'event_label': 'Landing Bet300 - Click en chat',
+    });
+
+    // Evento personalizado para Meta Ads
+    fbq('trackCustom', 'InicioConversacion');
+
+    setTimeout(() => {
+      const numeros = [
+        "5491169640722",
+        "5491167901856",
+        "5491169649367",
+        "5491169616587",
+        "5491169606562",
+      ];
+      const numero = numeros[Math.floor(Math.random() * numeros.length)];
+      const mensaje = encodeURIComponent("Hola, vi la promoción y quiero saber más");
+      const utm = "&utm_source=facebook&utm_medium=cpc&utm_campaign=landing_chat";
+      window.location.href = `https://wa.me/${numero}?text=${mensaje}${utm}`;
+    }, 400);
+  }
 
     function bloquear(e) {
       const key = e.key || e.which || e.keyCode;
@@ -267,6 +269,7 @@
   </script>
 </body>
 </html>
+
 
 
 
