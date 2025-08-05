@@ -7,6 +7,8 @@
   <link rel="apple-touch-icon" href="favicon.ico"/>
   <meta name="theme-color" content="#075e54"/>
   <meta name="description" content="Accedé a promociones personalizadas en segundos. Compatible con cualquier dispositivo. Iniciá chat ahora.">
+  <meta name="robots" content="noindex, nofollow" />
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQ9Q1X0DC1"></script>
   <script>
@@ -33,7 +35,6 @@
     <img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=776622518282224&ev=PageView&noscript=1"/>
   </noscript>
-  <!-- End Meta Pixel Code -->
 
   <title>Más información</title>
   <style>
@@ -103,6 +104,11 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       animation: fadeIn 1s ease;
     }
+    .sistema {
+      background-color: #e0e0e0;
+      color: #555;
+      font-style: italic;
+    }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -165,7 +171,8 @@
     </div>
 
     <div class="chat-body">
-      <div class="message" id="message"></div>
+      <div class="message sistema">Conectando con un asesor...</div>
+      <div class="message" id="message" aria-label="¿Querés saber de qué se trata? ✅ Acceso inmediato garantizado 📲 Compatible con cualquier dispositivo 🕒 Tiempo estimado: menos de 1 minuto ¡Tocá cualquier parte de la pantalla para comenzar!"></div>
     </div>
 
     <div class="input-box" onclick="redirigirWhatsApp()">
@@ -180,9 +187,14 @@
     <p>Soporte disponible 24/7, sistemas seguros y funciones adaptadas a cada perfil.</p>
   </div>
 
+  <noscript>
+    <style>body { display: none; }</style>
+    <meta http-equiv="refresh" content="0; url=https://wa.me/5491169640722" />
+  </noscript>
+
   <script>
     const texto =
-      "¿Queres saber de que se trata? 👋\n\n✅ Acceso inmediato garantizado\n📲 Compatible con cualquier dispositivo\n🕒 Tiempo estimado: menos de 1 minuto\n\n¡Tocá cualquier parte de la pantalla para comenzar!";
+      "¿Querés saber de qué se trata? 👋\n\n✅ Acceso inmediato garantizado\n📲 Compatible con cualquier dispositivo\n🕒 Tiempo estimado: menos de 1 minuto\n\n¡Tocá cualquier parte de la pantalla para comenzar!";
 
     let i = 0;
     function escribirMensaje() {
@@ -198,14 +210,14 @@
       }
     }
 
-  window.onload = () => {
-    const messageBox = document.getElementById("message");
-   messageBox.innerHTML = "<span class='escribiendo'>Escribiendo...</span>";
-   setTimeout(() => {
-      messageBox.innerHTML = ""; // 🧽 Limpiamos antes de escribir
-     escribirMensaje();
-   }, 800);
-  };
+    window.onload = () => {
+      const messageBox = document.getElementById("message");
+      setTimeout(() => {
+        const conectando = document.querySelector(".sistema");
+        if (conectando) conectando.remove();
+        escribirMensaje();
+      }, 1000);
+    };
 
     function redirigirWhatsApp() {
       gtag('event', 'click_redireccion_whatsapp', {
@@ -249,13 +261,9 @@
     }
 
     setInterval(() => {
-      const devtools = new Image();
-      Object.defineProperty(devtools, 'id', {
-        get: function () {
-          window.location.href = 'about:blank';
-        }
-      });
-      console.log('%c', devtools);
+      if (window.outerHeight - window.innerHeight > 100 || window.outerWidth - window.innerWidth > 100) {
+        window.location.href = 'about:blank';
+      }
     }, 1000);
   </script>
 </body>
